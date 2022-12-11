@@ -19,5 +19,12 @@ std::string Util::randomString() {
 }
 
 bool Util::isTextInFile(std::string_view text, std::string_view fileName) {
+    std::ifstream logfile(fileName.data());
+    std::string line;
+    while (getline(logfile, line)) {
+        if (line.find(text) != std::string::npos) {
+            return true;
+        }
+    }
     return false;
 }
