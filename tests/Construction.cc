@@ -3,9 +3,9 @@
 #include "util.h"
 
 TEST("Simple message can be logged") {
-    std::string message = "simple";
+    std::string message = "simple ";
     message += Util::randomString();
-    MereMemo::log("simple");
+    MereMemo::log(message);
     bool result = Util::isTextInFile(message, "application.log");
     CONFIRM_TRUE(result);
 }
