@@ -5,7 +5,7 @@
 TEST("Simple message can be logged") {
     std::string message = "simple ";
     message += Util::randomString();
-    MereMemo::log(message);
+    MereMemo::log() << message << " with more text.";
     bool result = Util::isTextInFile(message, "application.log");
     CONFIRM_TRUE(result);
 }

@@ -10,13 +10,15 @@
 #include <string_view>
 
 namespace MereMemo {
-    inline void log(std::string_view message) {
+    inline std::fstream log() {
         auto const now = std::chrono::system_clock::now();
         std::time_t const timeNow = std::chrono::system_clock::to_time_t(now);
         auto const milliseconds = duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) % 1000;
         std::fstream logFile("application.log", std::ios::app);
-        logFile << std::put_time(std::gmtime(&timeNow), "%Y-%m-%dT%H:%M:%S.") << std::setw(3) \
-            << std::setfill('0') << std::to_string(milliseconds.count()) << " " << message << std::endl;
+        logFile << std::endl << std::put_time(std::gmtime(&timeNow), "%Y-%m-%dT%H:%M:%S.")
+            << std::setw(3) << std::setfill('0') << std::to_string(milliseconds.count()) << " ";
+
+        return logFile;
     }
 }
 
